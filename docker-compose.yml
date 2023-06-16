@@ -1,0 +1,116 @@
+version: '3.4'
+
+services:
+  db:
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_DB=MusicalDictate
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+    expose:
+      - "5432"
+    ports:
+      - "5433:5432"
+    volumes:
+      - db:/var/lib/postrgresql/data
+  rabbitmq:
+    image: masstransit/rabbitmq:latest
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+  studentapi:
+    image: studentapi
+    build:
+      context: Teacher/Backend/MusicalDictate.Teacher/
+      dockerfile: src/StudentApi/Dockerfile
+    ports:
+      - "7001:443"
+      - "5001:80"
+    environment:
+      - "ASPNETCORE_ENVIRONMENT=Development"
+      - "ASPNETCORE_URLS=http://+:80"
+      - "ConnectionStrings__DefaultConnection=Host=db,1433;Database=MusicalDictate;Username=user;Password=password;IncludeErrorDetail=true"
+      - "RabbitMq__Host=rabbitmq"
+      - "RabbitMq__Username=guest"
+      - "RabbitMq__Password=guest"
+    depends_on:
+      - rabbitmq
+  teacherapi:
+    image: teacherapi
+    build:
+      context: Teacher/Backend/MusicalDictate.Teacher
+      dockerfile: src/TeacherApi/Dockerfile
+    ports:
+      - "7002:443"
+      - "5002:80"
+    environment:
+      - "ASPNETCORE_ENVIRONMENT=Development"
+      - "ASPNETCORE_URLS=http://+:80"
+      - "ConnectionStrings__DefaultConnection=Host=db,1433;Database=MusicalDictate;Username=user;Password=password;IncludeErrorDetail=true"
+      - "RabbitMq__Host=rabbitmq"
+      - "RabbitMq__Username=guest"
+      - "RabbitMq__Password=guest"
+    depends_on:
+      - rabbitmq
+  webapi:
+    image: webapi
+    build:
+      context: Teacher/Backend/MusicalDictate.Teacher
+      dockerfile: src/WebApi/Dockerfile
+    ports:
+      - "7003:443"
+      - "5003:80"
+    environment:
+      - "ASPNETCORE_ENVIRONMENT=Development"
+      - "ASPNETCORE_URLS=http://+:80"
+      - "ConnectionStrings__DefaultConnection=Host=db,1433;Database=MusicalDictate;Username=user;Password=password;IncludeErrorDetail=true"
+      - "RabbitMq__Host=rabbitmq"
+      - "RabbitMq__Username=guest"
+      - "RabbitMq__Password=guest"
+    depends_on:
+      - rabbitmq
+  simplegrader:
+    image: simplegrader
+    build:
+      context: Teacher/Backend/MusicalDictate.Teacher
+      dockerfile: src/SimpleGrader/Dockerfile
+    ports:
+      - "7004:443"
+      - "5004:80"
+    environment:
+      - "ASPNETCORE_ENVIRONMENT=Development"
+      - "ASPNETCORE_URLS=http://+:80"
+      - "ConnectionStrings__DefaultConnection=Host=db,1433;Database=MusicalDictate;Username=user;Password=password;IncludeErrorDetail=true"
+      - "Endpoints__WebApi=http://webapi"
+      - "RabbitMq__Host=rabbitmq"
+      - "RabbitMq__Username=guest"
+      - "RabbitMq__Password=guest"
+    depends_on:
+      - rabbitmq
+      - webapi
+  studentui:
+    image: studentui
+    build:
+      context: ./Student/Frontend
+      dockerfile: ./Dockerfile
+    ports:
+      - "3010:3010"
+    environment:
+      - REACT_APP_STUDENT_API=http://localhost:5001
+    depends_on:
+      - studentapi
+  teacherui:
+    image: teacherui
+    build:
+      context: Teacher/Frontend
+      dockerfile: ./Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      - REACT_APP_TEACHER_API=http://localhost:5002
+    depends_on:
+      - teacherapi
+volumes:
+  db:
+    driver: local

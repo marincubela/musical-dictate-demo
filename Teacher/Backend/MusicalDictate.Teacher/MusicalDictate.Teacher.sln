@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "src\Domain\Domain.csproj", "{54F344C5-2A42-4F8A-8D59-051647BF5EB6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "src\Application\Application.csproj", "{6ECA7A49-296A-456C-A55A-9B3EB6E734C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "src\Infrastructure\Infrastructure.csproj", "{ABC57A30-2CDC-4157-A2B4-5A74F523F33A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "src\Persistence\Persistence.csproj", "{BEA1BDED-7C08-49EA-9B57-93C64897A12A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "src\WebApi\WebApi.csproj", "{4AC0F6B1-77C2-428F-965A-97BA6A07B9F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentApi", "src\StudentApi\StudentApi.csproj", "{F7E7777F-5B60-4597-9420-1D48C06D9EAE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeacherApi", "src\TeacherApi\TeacherApi.csproj", "{5AAA9D5C-4414-434D-AC07-D74515C28544}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleGrader", "src\SimpleGrader\SimpleGrader.csproj", "{C206B38C-2647-4947-9B47-C3264385B103}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{54F344C5-2A42-4F8A-8D59-051647BF5EB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54F344C5-2A42-4F8A-8D59-051647BF5EB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54F344C5-2A42-4F8A-8D59-051647BF5EB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54F344C5-2A42-4F8A-8D59-051647BF5EB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6ECA7A49-296A-456C-A55A-9B3EB6E734C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ECA7A49-296A-456C-A55A-9B3EB6E734C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ECA7A49-296A-456C-A55A-9B3EB6E734C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ECA7A49-296A-456C-A55A-9B3EB6E734C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABC57A30-2CDC-4157-A2B4-5A74F523F33A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABC57A30-2CDC-4157-A2B4-5A74F523F33A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABC57A30-2CDC-4157-A2B4-5A74F523F33A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABC57A30-2CDC-4157-A2B4-5A74F523F33A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEA1BDED-7C08-49EA-9B57-93C64897A12A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEA1BDED-7C08-49EA-9B57-93C64897A12A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEA1BDED-7C08-49EA-9B57-93C64897A12A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEA1BDED-7C08-49EA-9B57-93C64897A12A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AC0F6B1-77C2-428F-965A-97BA6A07B9F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AC0F6B1-77C2-428F-965A-97BA6A07B9F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AC0F6B1-77C2-428F-965A-97BA6A07B9F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AC0F6B1-77C2-428F-965A-97BA6A07B9F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7E7777F-5B60-4597-9420-1D48C06D9EAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7E7777F-5B60-4597-9420-1D48C06D9EAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7E7777F-5B60-4597-9420-1D48C06D9EAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7E7777F-5B60-4597-9420-1D48C06D9EAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AAA9D5C-4414-434D-AC07-D74515C28544}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AAA9D5C-4414-434D-AC07-D74515C28544}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AAA9D5C-4414-434D-AC07-D74515C28544}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AAA9D5C-4414-434D-AC07-D74515C28544}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C206B38C-2647-4947-9B47-C3264385B103}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C206B38C-2647-4947-9B47-C3264385B103}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C206B38C-2647-4947-9B47-C3264385B103}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C206B38C-2647-4947-9B47-C3264385B103}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
