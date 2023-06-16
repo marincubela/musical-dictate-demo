@@ -1,22 +1,22 @@
 ﻿using System.Reflection;
-using Application.Common.Interfaces;
-using Infrastructure.Services;
 using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SimpleGrader.Interfaces;
+using SimpleGrader.Services;
 
-namespace Infrastructure;
+namespace SimpleGrader;
 
 public static class ConfigureServices
 {
-    public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddSimpleGraderServices(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddTransient<ITokenService, TokenService>();
-        services.AddTransient<IMessageBrokerService, MessageBrokerService>();
+        services.AddSingleton<IWebApiClient, WebApiClient>();
 
         services.AddMassTransit(x =>
         {
             var entryAssembly = Assembly.GetEntryAssembly();
+
             x.AddConsumers(entryAssembly);
 
             x.UsingRabbitMq((context, cfg) =>
@@ -29,6 +29,7 @@ public static class ConfigureServices
                 cfg.ConfigureEndpoints(context);
             });
         });
+
         return services;
     }
 }

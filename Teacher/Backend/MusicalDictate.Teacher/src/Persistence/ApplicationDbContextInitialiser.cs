@@ -100,7 +100,7 @@ public class ApplicationDbContextInitialiser
             await _userManager.CreateAsync(grader, "Grader123!");
             if (!string.IsNullOrWhiteSpace(graderRole.Name))
             {
-                await _userManager.AddToRolesAsync(student, new[] {graderRole.Name});
+                await _userManager.AddToRolesAsync(grader, new[] {graderRole.Name});
             }
         }
 

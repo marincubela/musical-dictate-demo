@@ -1,36 +1,18 @@
-using System.Reflection;
-using System.Threading.Tasks;
-using MassTransit;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using SimpleGrader;
 
-namespace SimpleGrader;
+var builder = Host.CreateDefaultBuilder(args);
 
-public class Program
-{
-    public static async Task Main(string[] args)
-    {
-        await CreateHostBuilder(args).Build().RunAsync();
-    }
+var configuration = new ConfigurationBuilder()
+    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+    .AddJsonFile("appsettings.Development.json", optional: true, reloadOnChange: true)
+    .AddEnvironmentVariables()
+    .AddCommandLine(args)
+    .Build();
 
-    public static IHostBuilder CreateHostBuilder(string[] args) =>
-        Host.CreateDefaultBuilder(args)
-            .ConfigureServices((hostContext, services) =>
-            {
-                services.AddMassTransit(x =>
-                {
-                    var entryAssembly = Assembly.GetEntryAssembly();
+builder.ConfigureServices(services => services.AddSimpleGraderServices(configuration));
 
-                    x.AddConsumers(entryAssembly);
+var app = builder.Build();
 
-                    x.UsingRabbitMq((context, cfg) =>
-                    {
-                        cfg.Host("localhost", "/", h =>
-                        {
-                            h.Username("guest");
-                            h.Password("guest");
-                        });
-                        cfg.ConfigureEndpoints(context);
-                    });
-                });
-            });
-}
+app.Run();
